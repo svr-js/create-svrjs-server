@@ -1,0 +1,36 @@
+{
+  "name": "svrjs",
+  "version": "3.6.1-stub",
+  "description": "A web server running on Node.JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.svrjs.org/git/svrjs.git"
+  },
+  "keywords": [
+    "web",
+    "server",
+    "http",
+    "http2",
+    "js",
+    "javascript"
+  ],
+  "homepage": "https://svrjs.org",
+  "author": "DorianTech S.A.",
+  "engines": {
+    "node": ">= 8"
+  },
+  "bin": {
+    "create-svrjs-server": "./downloader.js"
+  },
+  "script": {
+    "postinstall": "node warn.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "zip": "^1.2.0"
+  }
+}

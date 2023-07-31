@@ -16,7 +16,6 @@ if(!version) {
   console.log("            'latest' -> latest SVR.JS version");
   console.log("            'lts' -> latest LTS SVR.JS version");
   console.log("            '3.6.1' -> SVR.JS 3.6.1");
-  console.log("WARNING: Doesn't support nightly SVR.JS versions!");
 } else if(version == "latest" || version == "lts") {
   https.get({
     hostname: "svrjs.org",
@@ -55,18 +54,22 @@ if(!version) {
   downloadSVRJS(version);
 }
     
-function downloadSVRJS(version) {
+function downloadSVRJS(oversion) {
+   var version = oversion.toLowerCase().replace(/[^0-9a-z.]/g,".");
+   var path = "/dl/svr.js." + version + ".zip";
+   if(version.indexOf("beta") != -1) path = "/dl/beta/svr.js." + version + ".zip";
+   if(version.indexOf("nightly") != -1) path = "/dl/nightly/svr.js." + version + ".zip";
    https.get({
     hostname: "svrjs.org",
     port: 443,
-    path: "/dl/svr.js." + version + ".zip",
+    path: path,
     method: "GET",
     headers: {
       "User-Agent": "create-svrjs-server"
     }
   }, function(res) {
     if(res.statusCode != 200) {
-      console.log("Server returns " + res.statusCode + " HTTP code while trying to download");
+      console.log("Server returns " + res.statusCode + " HTTP code while trying to download SVR.JS " + oversion);
       return;
     }
     var zipFile = fs.createWriteStream("svrjs.zip");

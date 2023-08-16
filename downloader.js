@@ -15,7 +15,7 @@ if(!version) {
   console.log("  version - SVR.JS version you want to download");
   console.log("            'latest' -> latest SVR.JS version");
   console.log("            'lts' -> latest LTS SVR.JS version");
-  console.log("            '3.6.1' -> SVR.JS 3.6.1");
+  console.log("            '3.6.4' -> SVR.JS 3.6.4");
 } else if(version == "latest" || version == "lts") {
   https.get({
     hostname: "svrjs.org",
@@ -53,7 +53,7 @@ if(!version) {
 } else {
   downloadSVRJS(version);
 }
-    
+
 function downloadSVRJS(oversion) {
    var version = oversion.toLowerCase().replace(/[^0-9a-z.]/g,".");
    var path = "/dl/svr.js." + version + ".zip";
@@ -85,7 +85,7 @@ function downloadSVRJS(oversion) {
           var allFileNames = Object.keys(allFiles);
           for(var i=0;i<allFileNames.length;i++) {
             var paths = allFileNames[i].split("/");
-            if(!isSVRJSinstalled || allFileNames[i].match(/^(?:[^\/.]+\.compressed|svr(?:_new)?\.js|node_modules(?:\/|$))/)) {
+            if(!isSVRJSinstalled || allFileNames[i].match(/^(?:[^\/.]+\.compressed|(?:log(?:viewer|highlight)|svr(?:passwd|_new)?)\.js|node_modules(?:\/|$))/)) {
               for(var j=0;j<paths.length-1;j++) {
                 var dirname = JSON.parse(JSON.stringify(paths)).splice(0,j+1).join("/");
                 if(!fs.existsSync(dirname)) {

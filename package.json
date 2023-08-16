@@ -1,6 +1,6 @@
 {
   "name": "svrjs",
-  "version": "3.6.1-stub3",
+  "version": "3.6.4-stub1",
   "description": "A web server running on Node.JS",
   "main": "index.js",
   "scripts": {

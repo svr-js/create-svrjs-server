@@ -41,14 +41,14 @@ if(!version) {
         }
         var dlver = data.match(regex);
         if(!dlver) {
-          console.log("Can't obtain latest version from main page");
+          console.log("Can't obtain the latest version from main page");
         } else {
           console.log("Selected SVR.JS " + dlver[1]);
           downloadSVRJS(dlver[1]);
         }
     });
   }).on("error", function() {
-    console.log("Can't connect to SVR.JS download server!");  
+    console.log("Can't connect to thr SVR.JS download server!");
   });
 } else {
   downloadSVRJS(version);
@@ -56,11 +56,11 @@ if(!version) {
 
 function downloadSVRJS(oversion) {
    var version = oversion.toLowerCase().replace(/[^0-9a-z.]/g,".");
-   var path = "/dl/svr.js." + version + ".zip";
-   if(version.indexOf("beta") != -1) path = "/dl/beta/svr.js." + version + ".zip";
-   if(version.indexOf("nightly") != -1) path = "/dl/nightly/svr.js." + version + ".zip";
+   var path = "/svr.js." + version + ".zip";
+   if(version.indexOf("beta") != -1) path = "/beta/svr.js." + version + ".zip";
+   if(version.indexOf("nightly") != -1) path = "/nightly/svr.js." + version + ".zip";
    https.get({
-    hostname: "svrjs.org",
+    hostname: "downloads.svrjs.org",
     port: 443,
     path: path,
     method: "GET",
@@ -70,6 +70,7 @@ function downloadSVRJS(oversion) {
   }, function(res) {
     if(res.statusCode != 200) {
       console.log("Server returns " + res.statusCode + " HTTP code while trying to download SVR.JS " + oversion);
+      console.log("Make sure you're using the latest version of the create-svrjs-server utility.");
       return;
     }
     var zipFile = fs.createWriteStream("svrjs.zip");
@@ -102,7 +103,7 @@ function downloadSVRJS(oversion) {
     });
     res.pipe(zipFile);
      }).on("error", function() {
-    console.log("Can't connect to SVR.JS download server!");  
+    console.log("Can't connect to the SVR.JS download server!");
   });
 }
 

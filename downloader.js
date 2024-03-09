@@ -48,7 +48,7 @@ if(!version) {
         }
     });
   }).on("error", function() {
-    console.log("Can't connect to thr SVR.JS download server!");
+    console.log("Can't connect to the SVR.JS download server!");
   });
 } else {
   downloadSVRJS(version);

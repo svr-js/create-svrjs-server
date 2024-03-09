@@ -1,6 +1,6 @@
 {
   "name": "svrjs",
-  "version": "3.11.0-stub1",
+  "version": "3.14.5-stub1",
   "description": "A web server running on Node.JS",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "javascript"
   ],
   "homepage": "https://svrjs.org",
-  "author": "DorianTech S.A.",
+  "author": "SVR.JS",
   "engines": {
     "node": ">= 8"
   },

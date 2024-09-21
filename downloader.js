@@ -18,9 +18,9 @@ if(!version) {
   console.log("            '3.6.4' -> SVR.JS 3.6.4");
 } else if(version == "latest" || version == "lts") {
   https.get({
-    hostname: "svrjs.org",
+    hostname: "downloads.svrjs.org",
     port: 443,
-    path: "/",
+    path: version == "lts" ? "/latest-lts.svrjs" : "/latest.svrjs",
     method: "GET",
     headers: {
       "User-Agent": "create-svrjs-server"
@@ -35,16 +35,12 @@ if(!version) {
         data += chunk;
     });
     res.on("end", function() {
-        var regex = />Download SVR\.JS ([^ <]+)<\/a>/;
-        if(version == "lts") {
-           regex = />Download SVR\.JS ([^ <]+) LTS<\/a>/;
-        }
-        var dlver = data.match(regex);
+        var dlver = data.trim();
         if(!dlver) {
-          console.log("Can't obtain the latest version from main page");
+          console.log("Can't obtain the latest version from downloads server");
         } else {
-          console.log("Selected SVR.JS " + dlver[1]);
-          downloadSVRJS(dlver[1]);
+          console.log("Selected SVR.JS " + dlver);
+          downloadSVRJS(dlver);
         }
     });
   }).on("error", function() {
